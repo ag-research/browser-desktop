@@ -1,0 +1,81 @@
+diff --git a/browser/base/content/tabbrowser-tabs.js b/browser/base/content/tabbrowser-tabs.js
+index f9606a9bf1391bdc9c987e7eb7a20bf4403bbd3b..32be150e94b12f954924118f11369f5697a056a6 100644
+--- a/browser/base/content/tabbrowser-tabs.js
++++ b/browser/base/content/tabbrowser-tabs.js
+@@ -28,6 +28,17 @@
+       this.addEventListener("drop", this);
+       this.addEventListener("dragend", this);
+       this.addEventListener("dragexit", this);
++      this.addEventListener("mouseenter", (event) => {
++        // _hoveredTab
++
++        this.tabPreviewTimer = setTimeout(() => {
++          TabPreview.showPreviewForTab(event, this);
++        }, 500);
++      });
++      this.addEventListener("mouseleave", (event) => {
++        clearTimeout(this.tabPreviewTimer);
++        this.tabPreviewTimer = null;
++      });
+     }
+ 
+     init() {
+@@ -58,11 +69,12 @@
+         "browser.tabs.tabClipWidth"
+       );
+       this._hiddenSoundPlayingTabs = new Set();
++      this.tabPreviewTimer = null;
+ 
+       // Normal tab title is used also in the permanent private browsing mode.
+       let strId =
+         PrivateBrowsingUtils.isWindowPrivate(window) &&
+-        !Services.prefs.getBoolPref("browser.privatebrowsing.autostart")
++          !Services.prefs.getBoolPref("browser.privatebrowsing.autostart")
+           ? "emptyPrivateTabTitle"
+           : "emptyTabTitle";
+       this.emptyTabTitle = gTabBrowserBundle.GetStringFromName("tabs." + strId);
+@@ -440,7 +452,7 @@
+         // On Windows and Mac we can update the drag image during a drag
+         // using updateDragImage. On Linux, we can use a panel.
+         if (platform == "win" || platform == "macosx") {
+-          captureListener = function() {
++          captureListener = function () {
+             dt.updateDragImage(canvas, dragImageOffset, dragImageOffset);
+           };
+         } else {
+@@ -723,7 +735,7 @@
+         let links;
+         try {
+           links = browserDragAndDrop.dropLinks(event, true);
+-        } catch (ex) {}
++        } catch (ex) { }
+ 
+         if (!links || links.length === 0) {
+           return;
+@@ -1265,7 +1277,7 @@
+ 
+         if (tabsToReset.length) {
+           window
+-            .promiseDocumentFlushed(() => {})
++            .promiseDocumentFlushed(() => { })
+             .then(() => {
+               window.requestAnimationFrame(() => {
+                 for (let tab of tabsToReset) {
+@@ -1817,7 +1829,7 @@
+             if (!this._animateElement.hasAttribute("highlight")) {
+               this._animateElement.setAttribute("highlight", "true");
+               setTimeout(
+-                function(ele) {
++                function (ele) {
+                   ele.removeAttribute("highlight");
+                 },
+                 150,
+@@ -1890,7 +1902,7 @@
+           sourceNode.localName == "tab" &&
+           sourceNode.ownerGlobal.isChromeWindow &&
+           sourceNode.ownerDocument.documentElement.getAttribute("windowtype") ==
+-            "navigator:browser" &&
++          "navigator:browser" &&
+           sourceNode.ownerGlobal.gBrowser.tabContainer == sourceNode.container
+         ) {
+           // Do not allow transfering a private tab to a non-private window

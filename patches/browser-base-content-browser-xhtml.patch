@@ -1,5 +1,5 @@
 diff --git a/browser/base/content/browser.xhtml b/browser/base/content/browser.xhtml
-index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d17745730 100644
+index 0a1090292f54612dbf0f564c772f12ae0056dc67..fee2139cc32bb6c9b66f2c033041659914341680 100644
 --- a/browser/base/content/browser.xhtml
 +++ b/browser/base/content/browser.xhtml
 @@ -130,17 +130,20 @@
@@ -71,7 +71,16 @@ index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d
      </menupopup>
  
      <menupopup id="blockedPopupOptions"
-@@ -763,7 +773,7 @@
+@@ -638,6 +648,8 @@
+ #include ../../../devtools/startup/enableDevToolsPopup.inc.xhtml
+ #include browser-allTabsMenu.inc.xhtml
+ 
++#include ../../components/tabpreview/content/tabpreview.inc.xhtml
++
+     <hbox id="downloads-animation-container">
+       <vbox id="downloads-notification-anchor" hidden="true">
+         <vbox id="downloads-indicator-notification"/>
+@@ -763,7 +775,7 @@
                          oncommand="gSync.toggleAccountPanel('PanelUI-fxa', this, event)"/>
          </toolbaritem>
          <toolbarseparator class="sync-ui-item"/>
@@ -80,7 +89,7 @@ index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d
            <toolbarbutton id="appMenu-protection-report-button"
                 class="subviewbutton subviewbutton-iconic"
                 oncommand="gProtectionsHandler.openProtections(); gProtectionsHandler.recordClick('open_full_report', null, 'app_menu');">
-@@ -774,7 +784,12 @@
+@@ -774,7 +786,12 @@
              </label>
            </toolbarbutton>
          </toolbaritem>
@@ -94,7 +103,7 @@ index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d
          <toolbarbutton id="appMenu-new-window-button"
                         class="subviewbutton subviewbutton-iconic"
                         label="&newNavigatorCmd.label;"
-@@ -800,9 +815,10 @@
+@@ -800,9 +817,10 @@
          <toolbarbutton id="appMenuRestoreLastSession"
                         label="&appMenuHistory.restoreSession.label;"
                         class="subviewbutton subviewbutton-iconic"
@@ -108,7 +117,7 @@ index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d
            <!-- Use a spacer, because panel sizing code gets confused when using CSS methods. -->
            <spacer class="before-label"/>
            <label value="&fullZoom.label;"/>
-@@ -832,8 +848,8 @@
+@@ -832,8 +850,8 @@
                           onclick="if (event.button == 0) this.closest('panel').hidePopup();"
                           tooltip="dynamic-shortcut-tooltip"/>
          </toolbaritem>
@@ -119,7 +128,7 @@ index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d
            <!-- Use a spacer, because panel sizing code gets confused when using CSS methods. -->
            <spacer class="before-label"/>
            <label value="&editMenu.label;"/>
-@@ -857,18 +873,34 @@
+@@ -857,18 +875,34 @@
                         class="subviewbutton subviewbutton-iconic subviewbutton-nav"
                         label="&places.library.title;"
                         closemenu="none"
@@ -157,7 +166,7 @@ index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d
          <toolbarbutton id="appMenu-preferences-button"
                         class="subviewbutton subviewbutton-iconic"
  #ifdef XP_WIN
-@@ -879,8 +911,7 @@
+@@ -879,8 +913,7 @@
                         key="key_preferencesCmdMac"
  #endif
  #endif
@@ -167,7 +176,7 @@ index 0a1090292f54612dbf0f564c772f12ae0056dc67..85311cd329e27bdb0f3d4015cc5be34d
          <toolbarbutton id="appMenu-customize-button"
                         class="subviewbutton subviewbutton-iconic"
                         data-l10n-id="appmenu-customizetoolbar"
-@@ -910,11 +941,13 @@
+@@ -910,11 +943,13 @@
  #endif
                         />
          <toolbarseparator/>

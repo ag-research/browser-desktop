@@ -1,0 +1,210 @@
+diff --git a/browser/base/content/tabbrowser.js b/browser/base/content/tabbrowser.js
+index baceb605efb73bce0f46163a69caf5f0ec8a1c63..a1a750c02a862aa410875e0162c058cd9cd7ed9f 100644
+--- a/browser/base/content/tabbrowser.js
++++ b/browser/base/content/tabbrowser.js
+@@ -1142,7 +1142,7 @@
+             webProgress,
+             null,
+             Ci.nsIWebProgressListener.STATE_START |
+-              Ci.nsIWebProgressListener.STATE_IS_NETWORK,
++            Ci.nsIWebProgressListener.STATE_IS_NETWORK,
+             0,
+           ],
+           true,
+@@ -1161,7 +1161,7 @@
+             webProgress,
+             null,
+             Ci.nsIWebProgressListener.STATE_STOP |
+-              Ci.nsIWebProgressListener.STATE_IS_NETWORK,
++            Ci.nsIWebProgressListener.STATE_IS_NETWORK,
+             0,
+           ],
+           true,
+@@ -1819,7 +1819,7 @@
+       if (!gMultiProcessBrowser && shouldBeRemote) {
+         throw new Error(
+           "Cannot switch to remote browser in a window " +
+-            "without the remote tabs load context."
++          "without the remote tabs load context."
+         );
+       }
+ 
+@@ -2620,7 +2620,7 @@
+         // Call _handleNewTab asynchronously as it needs to know if the
+         // new tab is selected.
+         setTimeout(
+-          function(tabContainer) {
++          function (tabContainer) {
+             tabContainer._handleNewTab(t);
+           },
+           0,
+@@ -2676,13 +2676,13 @@
+         let remoteType = forceNotRemote
+           ? E10SUtils.NOT_REMOTE
+           : E10SUtils.getRemoteTypeForURI(
+-              aURI,
+-              gMultiProcessBrowser,
+-              gFissionBrowser,
+-              preferredRemoteType,
+-              null,
+-              oa
+-            );
++            aURI,
++            gMultiProcessBrowser,
++            gFissionBrowser,
++            preferredRemoteType,
++            null,
++            oa
++          );
+ 
+         // If we open a new tab with the newtab URL in the default
+         // userContext, check if there is a preloaded browser ready.
+@@ -2841,7 +2841,7 @@
+       this.tabAnimationsInProgress++;
+ 
+       if (animate) {
+-        requestAnimationFrame(function() {
++        requestAnimationFrame(function () {
+           // kick the animation off
+           t.setAttribute("fadein", "true");
+         });
+@@ -3410,11 +3410,11 @@
+         aTab.pinned ||
+         aTab.hidden ||
+         this._removingTabs.length >
+-          3 /* don't want lots of concurrent animations */ ||
++        3 /* don't want lots of concurrent animations */ ||
+         aTab.getAttribute("fadein") !=
+-          "true" /* fade-in transition hasn't been triggered yet */ ||
++        "true" /* fade-in transition hasn't been triggered yet */ ||
+         window.getComputedStyle(aTab).maxWidth ==
+-          "0.1px" /* fade-in transition hasn't moved yet */
++        "0.1px" /* fade-in transition hasn't moved yet */
+       ) {
+         // We're not animating, so we can cancel the animation stopwatch.
+         TelemetryStopwatch.cancel("FX_TAB_CLOSE_TIME_ANIM_MS", aTab);
+@@ -3430,7 +3430,7 @@
+       aTab.removeAttribute("bursting");
+ 
+       setTimeout(
+-        function(tab, tabbrowser) {
++        function (tab, tabbrowser) {
+           if (
+             tab.container &&
+             window.getComputedStyle(tab).maxWidth == "0.1px"
+@@ -3527,7 +3527,7 @@
+           closeWindowWithLastTab != null
+             ? closeWindowWithLastTab
+             : !window.toolbar.visible ||
+-              Services.prefs.getBoolPref("browser.tabs.closeWindowWithLastTab");
++            Services.prefs.getBoolPref("browser.tabs.closeWindowWithLastTab");
+ 
+         if (closeWindow) {
+           // We've already called beforeunload on all the relevant tabs if we get here,
+@@ -3748,7 +3748,7 @@
+         this.tabContainer._updateCloseButtons();
+ 
+         setTimeout(
+-          function(tabs) {
++          function (tabs) {
+             tabs._lastTabClosedByMouse = false;
+           },
+           0,
+@@ -4196,10 +4196,10 @@
+       if (arguments.length != 1) {
+         Cu.reportError(
+           "gBrowser.addProgressListener was " +
+-            "called with a second argument, " +
+-            "which is not supported. See bug " +
+-            "608628. Call stack: " +
+-            new Error().stack
++          "called with a second argument, " +
++          "which is not supported. See bug " +
++          "608628. Call stack: " +
++          new Error().stack
+         );
+       }
+ 
+@@ -4987,21 +4987,21 @@
+           if (checkValue.value) {
+             try {
+               Services.prefs.setBoolPref(kPrefShortcutEnabled, false);
+-            } catch (ex) {}
++            } catch (ex) { }
+           }
+           return;
+         }
+         if (checkValue.value) {
+           try {
+             Services.prefs.setBoolPref(kPrefWarnOnEnable, false);
+-          } catch (ex) {}
++          } catch (ex) { }
+         }
+       }
+ 
+       // Toggle the pref
+       try {
+         Services.prefs.setBoolPref(kPrefCaretBrowsingOn, !browseWithCaretOn);
+-      } catch (ex) {}
++      } catch (ex) { }
+     },
+ 
+     _handleKeyPressEvent(aEvent) {
+@@ -5113,14 +5113,14 @@
+       if (tab.mOverCloseButton) {
+         label = tab.selected
+           ? stringWithShortcut(
+-              "tabs.closeTabs.tooltip",
+-              "key_close",
+-              affectedTabsLength
+-            )
++            "tabs.closeTabs.tooltip",
++            "key_close",
++            affectedTabsLength
++          )
+           : PluralForm.get(
+-              affectedTabsLength,
+-              gTabBrowserBundle.GetStringFromName("tabs.closeTabs.tooltip")
+-            ).replace("#1", affectedTabsLength);
++            affectedTabsLength,
++            gTabBrowserBundle.GetStringFromName("tabs.closeTabs.tooltip")
++          ).replace("#1", affectedTabsLength);
+       }
+       // When Picture-in-Picture is open, we repurpose '.tab-icon-sound' as
+       // an inert Picture-in-Picture indicator, so we should display
+@@ -5182,7 +5182,7 @@
+           if (aEvent.target == window && !this._switcher) {
+             this.selectedBrowser.preserveLayers(
+               window.windowState == window.STATE_MINIMIZED ||
+-                window.isFullyOccluded
++              window.isFullyOccluded
+             );
+             this.selectedBrowser.docShellIsActive = this.shouldActivateDocShell(
+               this.selectedBrowser
+@@ -5982,7 +5982,7 @@
+         aRequest.QueryInterface(Ci.nsIChannel);
+         location = aRequest.URI;
+         originalLocation = aRequest.originalURI;
+-      } catch (ex) {}
++      } catch (ex) { }
+ 
+       let ignoreBlank = this._isForInitialAboutBlank(
+         aWebProgress,
+@@ -6022,7 +6022,7 @@
+               gInitialPages.includes(originalLocation.spec) &&
+               originalLocation != "about:blank" &&
+               this.mBrowser.initialPageLoadedFromUserAction !=
+-                originalLocation.spec &&
++              originalLocation.spec &&
+               this.mBrowser.currentURI &&
+               this.mBrowser.currentURI.spec == "about:blank"
+             )
+@@ -6655,7 +6655,7 @@ var TabContextMenu = {
+     let unpinnedTabsToClose = multiselectionContext
+       ? gBrowser.visibleTabs.filter(t => !t.multiselected && !t.pinned).length
+       : gBrowser.visibleTabs.filter(t => t != this.contextTab && !t.pinned)
+-          .length;
++        .length;
+     document.getElementById("context_closeOtherTabs").disabled =
+       unpinnedTabsToClose < 1;
+ 
