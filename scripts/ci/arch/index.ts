@@ -9,7 +9,7 @@ export class ArchPkg extends BuildTarget {
             name: "Arch (64-bit)",
             arch: Architectures.x86_64,
             audience: OperatingSystems.Linux
-        })
+        });
     }
 }
 

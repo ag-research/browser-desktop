@@ -9,7 +9,7 @@ export class DebianPkg extends BuildTarget {
             name: "Debian (64-bit)",
             arch: Architectures.x86_64,
             audience: OperatingSystems.Linux
-        })
+        });
     }
 }
 

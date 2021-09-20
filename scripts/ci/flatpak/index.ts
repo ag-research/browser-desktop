@@ -9,7 +9,7 @@ export class FlatpakPkg extends BuildTarget {
             name: "Flatpak (64-bit)",
             arch: Architectures.x86_64,
             audience: OperatingSystems.Linux
-        })
+        });
     }
 }
 

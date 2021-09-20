@@ -5,8 +5,9 @@ export class LinuxDownloadStep extends Step {
     public constructor() {
         super({
             name: "Download",
-            description: "Downloading upstream repository..."
-        })
+            description:
+                "Downloading upstream repository..."
+        });
     }
 
     public async run() {

@@ -4,9 +4,7 @@ import { BuildTarget } from "../target";
 import { LinuxDownloadStep } from "./steps/download";
 
 export class Linux extends BuildTarget {
-    public steps = [
-        new LinuxDownloadStep()
-    ]
+    public steps = [new LinuxDownloadStep()];
 
     public constructor() {
         super({
@@ -14,8 +12,8 @@ export class Linux extends BuildTarget {
             name: "Linux (64-bit)",
             arch: Architectures.x86_64,
             audience: OperatingSystems.Linux
-        })
+        });
     }
 }
 
-(new Linux()).run();
+new Linux().run();

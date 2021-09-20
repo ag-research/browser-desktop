@@ -6,8 +6,8 @@ export class Step {
         name,
         description
     }: {
-        name: string,
-        description: string
+        name: string;
+        description: string;
     }) {
         this.name = name;
         this.description = description;

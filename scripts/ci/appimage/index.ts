@@ -9,7 +9,7 @@ export class AppImgPkg extends BuildTarget {
             name: "AppImage (64-bit)",
             arch: Architectures.x86_64,
             audience: OperatingSystems.Linux
-        })
+        });
     }
 }
 

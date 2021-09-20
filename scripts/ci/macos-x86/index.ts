@@ -9,7 +9,7 @@ export class MacOSx86 extends BuildTarget {
             name: "MacOS x86 (64-bit)",
             arch: Architectures.x86_64,
             audience: OperatingSystems.MacOS
-        })
+        });
     }
 }
 

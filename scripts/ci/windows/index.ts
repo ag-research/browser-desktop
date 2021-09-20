@@ -9,7 +9,7 @@ export class Windows extends BuildTarget {
             name: "Windows (64-bit)",
             arch: Architectures.x86_64,
             audience: OperatingSystems.Windows
-        })
+        });
     }
 }
 
