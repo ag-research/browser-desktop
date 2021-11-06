@@ -1,8 +1,8 @@
 {
     "files.associations": {
         "*.jsm": "javascript",
-        // Is there a reason you don't want syntax highlighting?
-        //        "**/src/**/*.*": "plaintext",
+        // Plaintext to stop format on save
+        "**/engine/**/*.*": "plaintext",
         "**/src/**/*.svg": "svg"
     },
     "files.watcherExclude": {
@@ -70,8 +70,6 @@
             "description": "Update keyboard shortcuts or add menu items"
         }
     ],
-    "git.ignoreLimitWarning": true,
-    "editor.formatOnSave": false,
     "[plaintext]": {
         "editor.formatOnSave": false
     },
