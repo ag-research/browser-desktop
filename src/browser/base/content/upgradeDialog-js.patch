@@ -1,19 +1,48 @@
 diff --git a/browser/base/content/upgradeDialog.js b/browser/base/content/upgradeDialog.js
-index c1259b37f5fc93b0affed5b6d01b7fbac5054bf6..5edf53ddae7f2d88d93e9ff8ec871b5d27d0b21b 100644
+index 8e84d39488cd34ca5b696a412349adbc55bd08a8..1997a13f03d813c3b0f9086262ba4dcb7b5120f8 100644
 --- a/browser/base/content/upgradeDialog.js
 +++ b/browser/base/content/upgradeDialog.js
-@@ -63,10 +63,10 @@ const SCREEN_STRINGS = [
- 
+@@ -38,39 +38,10 @@ const SCREEN_STRINGS = [
  // Themes that can be selected by the button with matching index.
  const THEME_IDS = [
--  "default-theme@mozilla.org",
--  "firefox-compact-light@mozilla.org",
--  "firefox-compact-dark@mozilla.org",
--  "firefox-alpenglow@mozilla.org",
-+  Services.builtInThemes.DEFAULT_THEME_ID,
-+  Services.builtInThemes.LIGHT_THEME_ID,
-+  Services.builtInThemes.DARK_THEME_ID,
-+  Services.builtInThemes.FUSION_THEME_ID,
+   [
+-    "firefox-compact-light@mozilla.org",
+-    "default-theme@mozilla.org",
+-    "firefox-compact-dark@mozilla.org",
+-  ],
+-  [
+-    "abstract-soft-colorway@mozilla.org",
+-    "abstract-balanced-colorway@mozilla.org",
+-    "abstract-bold-colorway@mozilla.org",
+-  ],
+-  [
+-    "cheers-soft-colorway@mozilla.org",
+-    "cheers-balanced-colorway@mozilla.org",
+-    "cheers-bold-colorway@mozilla.org",
+-  ],
+-  [
+-    "foto-soft-colorway@mozilla.org",
+-    "foto-balanced-colorway@mozilla.org",
+-    "foto-bold-colorway@mozilla.org",
+-  ],
+-  [
+-    "lush-soft-colorway@mozilla.org",
+-    "lush-balanced-colorway@mozilla.org",
+-    "lush-bold-colorway@mozilla.org",
+-  ],
+-  [
+-    "graffiti-soft-colorway@mozilla.org",
+-    "graffiti-balanced-colorway@mozilla.org",
+-    "graffiti-bold-colorway@mozilla.org",
+-  ],
+-  [
+-    "elemental-soft-colorway@mozilla.org",
+-    "elemental-balanced-colorway@mozilla.org",
+-    "elemental-bold-colorway@mozilla.org",
++    Services.builtInThemes.DEFAULT_THEME_ID,
++    Services.builtInThemes.LIGHT_THEME_ID,
++    Services.builtInThemes.DARK_THEME_ID,
++    Services.builtInThemes.FUSION_THEME_ID,
+   ],
  ];
  
- // Callbacks to run when the dialog closes (both from this file or externally).
