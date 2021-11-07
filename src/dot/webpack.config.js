@@ -108,7 +108,10 @@ cacheGroups = {
 module.exports = {
     target: "web",
     entry,
-    mode: "production",
+    // Production is messing with me
+    // TODO: This should be changed based on an option in melon build
+    // mode: "production",
+    devtool: "source-map",
     module: {
         rules: [
             {

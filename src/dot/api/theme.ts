@@ -225,6 +225,8 @@ export class ThemeAPI {
                           )
                         : null;
 
+                console.log(addon);
+
                 const theme = new Theme({
                     id: addon.id,
 
